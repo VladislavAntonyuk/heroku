@@ -22,6 +22,7 @@ jobs:
         ruby-version: ['3.0']
     env: 
       HEROKU_APP_NAME: "drawgo-test"
+      HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
     steps:
     - uses: actions/checkout@v2
     - name: Set up Ruby
