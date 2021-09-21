@@ -1,4 +1,4 @@
-FROM MySQL:latest
+FROM mysql:latest
 ENV MYSQL_DATABASE: my_db
 ENV MYSQL_USER: my_password
 ENV MYSQL_PASSWORD: secret

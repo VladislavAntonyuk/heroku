@@ -1,20 +1,19 @@
-# https://hub.docker.com/_/microsoft-dotnet
-FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
-WORKDIR /source
+FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS base
+WORKDIR /app
+EXPOSE 80
 
-# copy csproj and restore as distinct layers
-COPY *.sln .
-COPY drawgo_test/*.csproj ./drawgo_test/
-RUN dotnet restore
+FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
+COPY ./drawgo_test ./src/drawgo_test
+WORKDIR /src
+RUN dotnet restore "./drawgo_test/drawgo_test.csproj"
+RUN dotnet build --no-restore "./drawgo_test/drawgo_test.csproj" -c Release -o /app/build
 
-# copy everything else and build app
-COPY drawgo_test/. ./drawgo_test/
-WORKDIR /source/drawgo_test
-RUN dotnet publish -c release -o /app --no-restore
+FROM build AS publish
+RUN dotnet publish --no-restore "./drawgo_test/drawgo_test.csproj" -c Release -o /app/publish
 
 # final stage/image
-FROM mcr.microsoft.com/dotnet/aspnet:5.0
+FROM base AS final
 WORKDIR /app
-COPY --from=build /app ./
+COPY --from=publish /app/publish ./
 # ENTRYPOINT ["dotnet", "drawgo_test.dll"]
 CMD ASPNETCORE_URLS=http://*:$PORT dotnet drawgo_test.dll
