@@ -37,6 +37,8 @@ https://drawgo.herokuapp.com/
 
 
  docker build -t drawgo .
+ heroku login
+ heroku container:login
  docker tag drawgo registry.heroku.com/drawgo/web
  heroku container:push web -a drawgo
  heroku container:release web -a drawgo

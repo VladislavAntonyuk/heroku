@@ -24,6 +24,7 @@ public class WeatherForecastController : ControllerBase
     public WeatherForecast Post(WeatherForecast weatherForecast)
     {
         context.Forecasts.Add(weatherForecast);
+        context.SaveChanges();
         return weatherForecast;
     }
 }

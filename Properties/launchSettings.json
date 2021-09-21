@@ -16,7 +16,8 @@
       "launchUrl": "swagger",
       "applicationUrl": "https://localhost:7185;http://localhost:5278",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "JAWSDB_URL": "mysql://login:password@server/dbname"
       }
     },
     "IIS Express": {

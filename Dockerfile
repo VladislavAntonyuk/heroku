@@ -15,3 +15,7 @@ WORKDIR /app
 COPY --from=publish /app/publish ./
 # ENTRYPOINT ["dotnet", "drawgo.dll"]
 CMD ASPNETCORE_URLS=http://*:$PORT dotnet drawgo.dll
+
+# FROM mysql
+# ENV MYSQL_ROOT_PASSWORD password
+# ENV MYSQL_DATABASE drawgo
