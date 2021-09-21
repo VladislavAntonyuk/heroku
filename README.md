@@ -32,5 +32,11 @@ heroku container:release -a drawgo-test web
 3. Add HEROKU_API_KEY to GitLab repository setting -> CI/CD -> Variables
 4. Push init commit to your GitLab repository in the `main` branch
 5. Check your app
-https://drawgo-test.herokuapp.com/
+https://drawgo.herokuapp.com/
 6. Enjoy
+
+
+ docker build -t drawgo .
+ docker tag drawgo registry.heroku.com/drawgo/web
+ heroku container:push web -a drawgo
+ heroku container:release web -a drawgo
