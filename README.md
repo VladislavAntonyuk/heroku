@@ -13,7 +13,7 @@ heroku login
 ```
 
 ## Heroku setups per project
-1. Create Heroku app with the name `drawgo-test`:
+1. Create Heroku app with the name `drawgo`:
 https://dashboard.heroku.com/new-app
 
 2. Heroku doesn't support .net from the box, so you need to push docker container for the first time by console\terminal:
@@ -23,11 +23,11 @@ heroku container:login
 ```
 * push your docker image to the container
 ```
-heroku container:push -a drawgo-test web
+heroku container:push -a drawgo web
 ```
 * release the container
 ```
-heroku container:release -a drawgo-test web
+heroku container:release -a drawgo web
 ```
 3. Add HEROKU_API_KEY to GitLab repository setting -> CI/CD -> Variables
 4. Push init commit to your GitLab repository in the `main` branch

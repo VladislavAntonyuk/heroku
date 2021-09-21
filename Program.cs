@@ -3,7 +3,6 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
 builder.Services.AddDbContext<WeatherForecastContext>(x =>
 {
     var env = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
@@ -15,7 +14,6 @@ builder.Services.AddDbContext<WeatherForecastContext>(x =>
     }
     else
     {
-        // Use connection string provided at runtime by Heroku.
         connUrl = Environment.GetEnvironmentVariable("CLEARDB_DATABASE_URL");
     }
 
@@ -36,13 +34,13 @@ builder.Services.AddDbContext<WeatherForecastContext>(x =>
 builder.Services.AddControllers();
 builder.Services.AddSwaggerGen(c =>
 {
-    c.SwaggerDoc("v1", new() { Title = "drawgo", Version = "v1" });
+    c.SwaggerDoc("v1", new() { Title = "Draw & GO", Version = "v1" });
 });
 
 var app = builder.Build();
 
 app.UseSwagger();
-app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "drawgo v1"));
+app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Draw & GO v1"));
 
 app.UseHttpsRedirection();
 
